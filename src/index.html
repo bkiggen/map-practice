@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+        width: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 43.8041, lng: -120.5542},
+        zoom: 7
+      });
+
+      var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Enchanted Forest</h1>'+
+            '<div id="bodyContent">'+
+            '<img style="width:50%" src="https://res.cloudinary.com/sagacity/image/upload/c_crop,h_2460,w_2670,x_0,y_520/c_limit,f_auto,fl_lossy,q_80,w_1080/pomo_0816_enchanted_forest_by2sh1.jpg">' +
+            '<p>The Enchanted Forest is an amusement park located in Turner in the U.S. state of Oregon, next to Interstate 5 just south of Salem. Creator Roger Tofte opened the park in 1971 after seven years of construction. Today, the Tofte family still owns and operates the 20-acre (8.1 ha) park.[1]</p>'+
+            '</div>'+
+            '</div>';
+
+            var contentString1 = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Oaks Park</h1>'+
+            '<div id="bodyContent">'+
+            '<img style="width:50%" src="https://www.hereforthebeer.com/wp-content/uploads/2015/09/oaks-park-in-portland-oregon.jpg">' +
+            '<p>The Enchanted Forest is an amusement park located in Turner in the U.S. state of Oregon, next to Interstate 5 just south of Salem. Creator Roger Tofte opened the park in 1971 after seven years of construction. Today, the Tofte family still owns and operates the 20-acre (8.1 ha) park.[1]</p>'+
+            '</div>'+
+            '</div>';
+
+            var contentString2 = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Thrill-Ville USA</h1>'+
+            '<div id="bodyContent">'+
+            '<p>Heritage Site.</p>'+
+            '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+            'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+            '(last visited June 22, 2009).</p>'+
+            '</div>'+
+            '</div>';
+
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        var infowindow1 = new google.maps.InfoWindow({
+            content: contentString1
+          });
+
+          var infowindow2 = new google.maps.InfoWindow({
+              content: contentString2
+            });
+
+      var enchantedForest = new google.maps.Marker({
+        position: {lat: 44.833085, lng: -123.008249},
+        map: map,
+        title: 'Enchanted Forest'
+      });
+      enchantedForest.addListener('click', function() {
+          infowindow.open(map, enchantedForest);
+        });
+
+      var oaksPark = new google.maps.Marker({
+        position: {lat: 45.4730, lng: -122.66061},
+        map: map,
+        title: 'Oaks Park'
+      });
+      oaksPark.addListener('click', function() {
+          infowindow1.open(map, oaksPark);
+        });
+
+      var thrillVille = new google.maps.Marker({
+        position: {lat: 44.833144, lng: -125},
+        map: map,
+        title: 'Thrill-Ville USA'
+      });
+      thrillVille.addListener('click', function() {
+          infowindow2.open(map, thrillVille);
+        });
+
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=[API_KEY]&callback=initMap"
+    async defer></script>
+  </body>
+  </html>
